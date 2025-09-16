@@ -120,11 +120,11 @@ trackierConfig.setAndroidId("custom_android_device_id_123");
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0; justify-content: center;">
   <div style="width: 500px;">
-    <img src="assets/Images/homescreen.png" alt="Home Screen" style="width: 500px; height: 600px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+    <img src="assets/Images/homescreen.png" alt="Home Screen" style="width: 500px; height: 720px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Home Screen - Main Dashboard</p>
   </div>
   <div style="width: 500px;">
-    <img src="assets/Images/homescreen2.png" alt="Home Screen 2" style="width: 500px; height: 600px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+    <img src="assets/Images/homescreen2.png" alt="Home Screen 2" style="width: 500px; height: 720px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Home Screen - Feature Overview</p>
   </div>
 </div>
@@ -133,11 +133,11 @@ trackierConfig.setAndroidId("custom_android_device_id_123");
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0; justify-content: center;">
   <div style="width: 500px;">
-    <img src="assets/Images/buildinevent.png" alt="Built-in Events" style="width: 500px; height: 600px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+    <img src="assets/Images/buildinevent.png" alt="Built-in Events" style="width: 500px; height: 720px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Built-in Events Screen</p>
   </div>
   <div style="width: 500px;">
-    <img src="assets/Images/customevent.png" alt="Custom Events" style="width: 500px; height: 600px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+    <img src="assets/Images/customevent.png" alt="Custom Events" style="width: 500px; height: 720px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Custom Events Screen</p>
   </div>
 </div>
@@ -146,11 +146,11 @@ trackierConfig.setAndroidId("custom_android_device_id_123");
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0; justify-content: center;">
   <div style="width: 500px;">
-    <img src="assets/Images/completedevent.png" alt="Complete Event" style="width: 500px; height: 600px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+    <img src="assets/Images/completedevent.png" alt="Complete Event" style="width: 500px; height: 720px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Complete Event Screen</p>
   </div>
   <div style="width: 500px;">
-    <img src="assets/Images/deeplink.png" alt="Deep Link" style="width: 500px; height: 600px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+    <img src="assets/Images/deeplink.png" alt="Deep Link" style="width: 500px; height: 720px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Deep Link Screen</p>
   </div>
 </div>
@@ -159,11 +159,11 @@ trackierConfig.setAndroidId("custom_android_device_id_123");
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0; justify-content: center;">
   <div style="width: 500px;">
-    <img src="assets/Images/dynamicanddeeplinkresolver.png" alt="Dynamic Link Resolver" style="width: 500px; height: 600px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+    <img src="assets/Images/dynamicanddeeplinkresolver.png" alt="Dynamic Link Resolver" style="width: 500px; height: 720px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Dynamic Link Resolver</p>
   </div>
   <div style="width: 500px;">
-    <img src="assets/Images/campaigndata.png" alt="Campaign Data" style="width: 500px; height: 600px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+    <img src="assets/Images/campaigndata.png" alt="Campaign Data" style="width: 500px; height: 720px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Campaign Data Screen</p>
   </div>
 </div>
@@ -172,11 +172,11 @@ trackierConfig.setAndroidId("custom_android_device_id_123");
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0; justify-content: center;">
   <div style="width: 500px;">
-    <img src="assets/Images/productpage.png" alt="Product Page" style="width: 500px; height: 600px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+    <img src="assets/Images/productpage.png" alt="Product Page" style="width: 500px; height: 720px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Product Page Screen</p>
   </div>
   <div style="width: 500px;">
-    <img src="assets/Images/dynamiclinkfields.png" alt="Dynamic Link Fields" style="width: 500px; height: 600px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+    <img src="assets/Images/dynamiclinkfields.png" alt="Dynamic Link Fields" style="width: 500px; height: 720px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Dynamic Link Fields</p>
   </div>
 </div>
