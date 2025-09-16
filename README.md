@@ -119,12 +119,12 @@ trackierConfig.setAndroidId("custom_android_device_id_123");
 ### Main Screens
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
-  <div style="flex: 1; min-width: 400px;">
-    <img src="assets/Images/homescreen.png" alt="Home Screen" width="400" height="400" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <div style="flex: 1; min-width: 300px; max-width: 50%;">
+    <img src="assets/Images/homescreen.png" alt="Home Screen" width="400" height="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Home Screen - Main Dashboard</p>
   </div>
-  <div style="flex: 1; min-width: 400px;">
-    <img src="assets/Images/homescreen2.png" alt="Home Screen 2" width="400" height="400" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <div style="flex: 1; min-width: 300px; max-width: 50%;">
+    <img src="assets/Images/homescreen2.png" alt="Home Screen 2" width="400" height="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Home Screen - Feature Overview</p>
   </div>
 </div>
@@ -132,12 +132,12 @@ trackierConfig.setAndroidId("custom_android_device_id_123");
 ### Event Tracking Screens
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
-  <div style="flex: 1; min-width: 400px;">
-    <img src="assets/Images/buildinevent.png" alt="Built-in Events" width="400" height="400" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <div style="flex: 1; min-width: 300px; max-width: 50%;">
+    <img src="assets/Images/buildinevent.png" alt="Built-in Events" width="400" height="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Built-in Events Screen</p>
   </div>
-  <div style="flex: 1; min-width: 400px;">
-    <img src="assets/Images/customevent.png" alt="Custom Events" width="400" height="400" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <div style="flex: 1; min-width: 300px; max-width: 50%;">
+    <img src="assets/Images/customevent.png" alt="Custom Events" width="400" height="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Custom Events Screen</p>
   </div>
 </div>
@@ -145,12 +145,12 @@ trackierConfig.setAndroidId("custom_android_device_id_123");
 ### Advanced Features
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
-  <div style="flex: 1; min-width: 400px;">
-    <img src="assets/Images/completedevent.png" alt="Complete Event" width="400" height="400" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <div style="flex: 1; min-width: 300px; max-width: 50%;">
+    <img src="assets/Images/completedevent.png" alt="Complete Event" width="400" height="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Complete Event Screen</p>
   </div>
-  <div style="flex: 1; min-width: 400px;">
-    <img src="assets/Images/deeplink.png" alt="Deep Link" width="400" height="400" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <div style="flex: 1; min-width: 300px; max-width: 50%;">
+    <img src="assets/Images/deeplink.png" alt="Deep Link" width="400" height="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Deep Link Screen</p>
   </div>
 </div>
@@ -158,12 +158,12 @@ trackierConfig.setAndroidId("custom_android_device_id_123");
 ### Dynamic Links & Campaign Data
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
-  <div style="flex: 1; min-width: 400px;">
-    <img src="assets/Images/dynamicanddeeplinkresolver.png" alt="Dynamic Link Resolver" width="400" height="400" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <div style="flex: 1; min-width: 300px; max-width: 50%;">
+    <img src="assets/Images/dynamicanddeeplinkresolver.png" alt="Dynamic Link Resolver" width="400" height="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Dynamic Link Resolver</p>
   </div>
-  <div style="flex: 1; min-width: 400px;">
-    <img src="assets/Images/campaigndata.png" alt="Campaign Data" width="400" height="400" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <div style="flex: 1; min-width: 300px; max-width: 50%;">
+    <img src="assets/Images/campaigndata.png" alt="Campaign Data" width="400" height="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Campaign Data Screen</p>
   </div>
 </div>
@@ -171,12 +171,12 @@ trackierConfig.setAndroidId("custom_android_device_id_123");
 ### Product & Dynamic Link Fields
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
-  <div style="flex: 1; min-width: 400px;">
-    <img src="assets/Images/productpage.png" alt="Product Page" width="400" height="400" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <div style="flex: 1; min-width: 300px; max-width: 50%;">
+    <img src="assets/Images/productpage.png" alt="Product Page" width="400" height="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Product Page Screen</p>
   </div>
-  <div style="flex: 1; min-width: 400px;">
-    <img src="assets/Images/dynamiclinkfields.png" alt="Dynamic Link Fields" width="400" height="400" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+  <div style="flex: 1; min-width: 300px; max-width: 50%;">
+    <img src="assets/Images/dynamiclinkfields.png" alt="Dynamic Link Fields" width="400" height="600" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; height: auto;"/>
     <p style="text-align: center; margin-top: 10px; font-weight: bold;">Dynamic Link Fields</p>
   </div>
 </div>
