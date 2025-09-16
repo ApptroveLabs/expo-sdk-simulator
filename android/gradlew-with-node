@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Set Node.js environment variables for Gradle
+export NODE_EXECUTABLE=/opt/homebrew/bin/node
+export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin
+export nodejs.dir=/opt/homebrew/bin
+
+# Run the original gradlew with all arguments
+exec ./gradlew "$@"
+
