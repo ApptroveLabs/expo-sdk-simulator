@@ -10,7 +10,7 @@ import {
   Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TrackierSDK, TrackierEvent } from 'trackier-expo-sdk';
+import { AppTroveSDK, AppTroveEvent } from 'apptrove-expo-sdk';
 
 const ProductPageScreen = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -46,28 +46,28 @@ const ProductPageScreen = () => {
     setSelectedProduct(product);
     
     // Track product view event
-    const trackierEvent = new TrackierEvent(TrackierEvent.CONTENT_VIEW);
-    trackierEvent.revenue = product.price;
-    trackierEvent.currency = product.currency;
-    trackierEvent.param1 = product.id;
-    trackierEvent.param2 = product.name;
-    trackierEvent.param3 = 'product_page';
+    const appTroveEvent = new AppTroveEvent(AppTroveEvent.CONTENT_VIEW);
+    appTroveEvent.revenue = product.price;
+    appTroveEvent.currency = product.currency;
+    appTroveEvent.param1 = product.id;
+    appTroveEvent.param2 = product.name;
+    appTroveEvent.param3 = 'product_page';
     
-    TrackierSDK.trackEvent(trackierEvent);
+    AppTroveSDK.trackEvent(appTroveEvent);
     
     Alert.alert('Product View Tracked', `Viewed: ${product.name}`);
   };
 
   const handleAddToCart = (product) => {
     // Track add to cart event
-    const trackierEvent = new TrackierEvent(TrackierEvent.ADD_TO_CART);
-    trackierEvent.revenue = product.price;
-    trackierEvent.currency = product.currency;
-    trackierEvent.param1 = product.id;
-    trackierEvent.param2 = product.name;
-    trackierEvent.param3 = '1'; // quantity
+    const appTroveEvent = new AppTroveEvent(AppTroveEvent.ADD_TO_CART);
+    appTroveEvent.revenue = product.price;
+    appTroveEvent.currency = product.currency;
+    appTroveEvent.param1 = product.id;
+    appTroveEvent.param2 = product.name;
+    appTroveEvent.param3 = '1'; // quantity
     
-    TrackierSDK.trackEvent(trackierEvent);
+    AppTroveSDK.trackEvent(appTroveEvent);
     
     Alert.alert('Added to Cart', `${product.name} added to cart!`);
   };

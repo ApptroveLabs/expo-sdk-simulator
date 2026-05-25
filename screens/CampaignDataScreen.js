@@ -9,7 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TrackierSDK } from 'trackier-expo-sdk';
+import { AppTroveSDK } from 'apptrove-expo-sdk';
 
 const CampaignDataScreen = () => {
   const [campaignData, setCampaignData] = useState(null);
@@ -21,34 +21,34 @@ const CampaignDataScreen = () => {
       // Get comprehensive campaign data using all available methods
       let data = {};
       
-      if (TrackierSDK) {
+      if (AppTroveSDK) {
         data = {
           // Basic campaign data
-          ad: TrackierSDK.getAd ? TrackierSDK.getAd() : 'Demo Ad',
-          adId: TrackierSDK.getAdID ? TrackierSDK.getAdID() : 'demo_ad_id',
-          campaign: TrackierSDK.getCampaign ? TrackierSDK.getCampaign() : 'Demo Campaign',
-          campaignId: TrackierSDK.getCampaignID ? TrackierSDK.getCampaignID() : 'demo_campaign_id',
-          adSet: TrackierSDK.getAdSet ? TrackierSDK.getAdSet() : 'Demo Ad Set',
-          adSetId: TrackierSDK.getAdSetID ? TrackierSDK.getAdSetID() : 'demo_adset_id',
-          channel: TrackierSDK.getChannel ? TrackierSDK.getChannel() : 'Demo Channel',
+          ad: AppTroveSDK.getAd ? AppTroveSDK.getAd() : 'Demo Ad',
+          adId: AppTroveSDK.getAdID ? AppTroveSDK.getAdID() : 'demo_ad_id',
+          campaign: AppTroveSDK.getCampaign ? AppTroveSDK.getCampaign() : 'Demo Campaign',
+          campaignId: AppTroveSDK.getCampaignID ? AppTroveSDK.getCampaignID() : 'demo_campaign_id',
+          adSet: AppTroveSDK.getAdSet ? AppTroveSDK.getAdSet() : 'Demo Ad Set',
+          adSetId: AppTroveSDK.getAdSetID ? AppTroveSDK.getAdSetID() : 'demo_adset_id',
+          channel: AppTroveSDK.getChannel ? AppTroveSDK.getChannel() : 'Demo Channel',
           
           // Custom parameters
-          p1: TrackierSDK.getP1 ? TrackierSDK.getP1() : 'demo_p1',
-          p2: TrackierSDK.getP2 ? TrackierSDK.getP2() : 'demo_p2',
-          p3: TrackierSDK.getP3 ? TrackierSDK.getP3() : 'demo_p3',
-          p4: TrackierSDK.getP4 ? TrackierSDK.getP4() : 'demo_p4',
-          p5: TrackierSDK.getP5 ? TrackierSDK.getP5() : 'demo_p5',
+          p1: AppTroveSDK.getP1 ? AppTroveSDK.getP1() : 'demo_p1',
+          p2: AppTroveSDK.getP2 ? AppTroveSDK.getP2() : 'demo_p2',
+          p3: AppTroveSDK.getP3 ? AppTroveSDK.getP3() : 'demo_p3',
+          p4: AppTroveSDK.getP4 ? AppTroveSDK.getP4() : 'demo_p4',
+          p5: AppTroveSDK.getP5 ? AppTroveSDK.getP5() : 'demo_p5',
           
           // Tracking identifiers
-          clickId: TrackierSDK.getClickId ? TrackierSDK.getClickId() : 'demo_click_id',
-          dlv: TrackierSDK.getDlv ? TrackierSDK.getDlv() : 'demo_dlv',
-          pid: TrackierSDK.getPid ? TrackierSDK.getPid() : 'demo_pid',
+          clickId: AppTroveSDK.getClickId ? AppTroveSDK.getClickId() : 'demo_click_id',
+          dlv: AppTroveSDK.getDlv ? AppTroveSDK.getDlv() : 'demo_dlv',
+          pid: AppTroveSDK.getPid ? AppTroveSDK.getPid() : 'demo_pid',
           
           // Campaign type
-          isRetargeting: TrackierSDK.getIsRetargeting ? TrackierSDK.getIsRetargeting() : false,
+          isRetargeting: AppTroveSDK.getIsRetargeting ? AppTroveSDK.getIsRetargeting() : false,
           
           // Additional data
-          trackierId: TrackierSDK.getTrackierId ? await TrackierSDK.getTrackierId() : 'demo_trackier_id',
+          trackierId: AppTroveSDK.getAppTroveId ? await AppTroveSDK.getAppTroveId() : 'demo_trackier_id',
           timestamp: new Date().toISOString(),
         };
       } else {
@@ -153,7 +153,7 @@ const CampaignDataScreen = () => {
             {renderDataItem('Deep Link Value', campaignData.dlv)}
             {renderDataItem('Partner ID', campaignData.pid)}
             {renderDataItem('Is Retargeting', campaignData.isRetargeting ? 'Yes' : 'No')}
-            {renderDataItem('Trackier ID', campaignData.trackierId)}
+            {renderDataItem('AppTrove ID', campaignData.trackierId)}
             {renderDataItem('Timestamp', campaignData.timestamp, true)}
           </View>
         ) : (
@@ -178,7 +178,7 @@ const CampaignDataScreen = () => {
             • Custom parameters (P1-P5){'\n'}
             • Click ID and deep link values{'\n'}
             • Partner ID and retargeting status{'\n'}
-            • Trackier ID for user identification
+            • AppTrove ID for user identification
           </Text>
         </View>
       </ScrollView>

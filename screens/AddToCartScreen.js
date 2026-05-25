@@ -10,7 +10,7 @@ import {
   Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TrackierSDK, TrackierEvent } from 'trackier-expo-sdk';
+import { AppTroveSDK, AppTroveEvent } from 'apptrove-expo-sdk';
 
 const AddToCartScreen = () => {
   const [productId, setProductId] = useState('');
@@ -35,15 +35,15 @@ const AddToCartScreen = () => {
     }
 
     // Track add to cart event
-    const trackierEvent = new TrackierEvent(TrackierEvent.ADD_TO_CART);
-    trackierEvent.revenue = priceValue * quantityValue;
-    trackierEvent.currency = currency;
-    trackierEvent.param1 = productId;
-    trackierEvent.param2 = productName;
-    trackierEvent.param3 = quantityValue.toString();
-    trackierEvent.param4 = category;
+    const appTroveEvent = new AppTroveEvent(AppTroveEvent.ADD_TO_CART);
+    appTroveEvent.revenue = priceValue * quantityValue;
+    appTroveEvent.currency = currency;
+    appTroveEvent.param1 = productId;
+    appTroveEvent.param2 = productName;
+    appTroveEvent.param3 = quantityValue.toString();
+    appTroveEvent.param4 = category;
 
-    TrackierSDK.trackEvent(trackierEvent);
+    AppTroveSDK.trackEvent(appTroveEvent);
 
     Alert.alert('Success', 'Item added to cart and event tracked!');
   };

@@ -12,7 +12,7 @@ import {
   Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TrackierSDK, TrackierEvent } from 'trackier-expo-sdk';
+import { AppTroveSDK, AppTroveEvent } from 'apptrove-expo-sdk';
 
 const CompleteEventScreen = () => {
   const [eventId, setEventId] = useState('');
@@ -61,24 +61,24 @@ const CompleteEventScreen = () => {
     }
 
     // Create custom event
-    const trackierEvent = new TrackierEvent(eventId);
-    trackierEvent.revenue = revenueValue;
-    trackierEvent.currency = currency;
+    const appTroveEvent = new AppTroveEvent(eventId);
+    appTroveEvent.revenue = revenueValue;
+    appTroveEvent.currency = currency;
 
     // Add custom parameters
     customParams.forEach((param, index) => {
       if (param.key.trim() && param.value.trim()) {
-        trackierEvent[`param${index + 1}`] = param.value;
+        appTroveEvent[`param${index + 1}`] = param.value;
       }
     });
 
     // Set user data
-    TrackierSDK.setUserName('Complete Event User');
-    TrackierSDK.setUserPhone('+1234567890');
-    TrackierSDK.setUserId('complete_event_user_123');
+    AppTroveSDK.setUserName('Complete Event User');
+    AppTroveSDK.setUserPhone('+1234567890');
+    AppTroveSDK.setUserId('complete_event_user_123');
 
     // Track the event
-    TrackierSDK.trackEvent(trackierEvent);
+    AppTroveSDK.trackEvent(appTroveEvent);
 
     Alert.alert('Success', 'Complete event tracked successfully!');
   };
@@ -87,7 +87,7 @@ const CompleteEventScreen = () => {
     let event;
     switch (eventType) {
       case 'purchase':
-        event = new TrackierEvent(TrackierEvent.PURCHASE);
+        event = new AppTroveEvent(AppTroveEvent.PURCHASE);
         event.revenue = 99.99;
         event.currency = 'USD';
         event.param1 = 'premium_plan';
@@ -95,14 +95,14 @@ const CompleteEventScreen = () => {
         event.param3 = '1';
         break;
       case 'registration':
-        event = new TrackierEvent(TrackierEvent.COMPLETE_REGISTRATION);
+        event = new AppTroveEvent(AppTroveEvent.COMPLETE_REGISTRATION);
         event.revenue = 0;
         event.currency = 'USD';
         event.param1 = 'email_signup';
         event.param2 = 'organic';
         break;
       case 'tutorial':
-        event = new TrackierEvent(TrackierEvent.TUTORIAL_COMPLETION);
+        event = new AppTroveEvent(AppTroveEvent.TUTORIAL_COMPLETION);
         event.revenue = 0;
         event.currency = 'USD';
         event.param1 = 'onboarding_tutorial';
@@ -113,13 +113,13 @@ const CompleteEventScreen = () => {
         return;
     }
 
-    TrackierSDK.trackEvent(event);
+    AppTroveSDK.trackEvent(event);
     Alert.alert('Quick Event', `${eventType} event tracked successfully!`);
   };
 
   const handleCompleteRegistrationExample = () => {
     // Create event with COMPLETE_REGISTRATION ID
-    const event = new TrackierEvent(TrackierEvent.COMPLETE_REGISTRATION);
+    const event = new AppTroveEvent(AppTroveEvent.COMPLETE_REGISTRATION);
     
     // Built-in fields
     event.orderId = "REG_001";
@@ -152,19 +152,19 @@ const CompleteEventScreen = () => {
     };
 
     // Attach user details
-    TrackierSDK.setUserId("USER12345");
-    TrackierSDK.setUserEmail("user@example.com");
-    TrackierSDK.setUserName("Jane Doe");
-    TrackierSDK.setUserPhone("+1234567890");
-    TrackierSDK.setIMEI("123456789012345", "987654321098765");
-    TrackierSDK.setMacAddress("00:1A:2B:3C:4D:5E");
+    AppTroveSDK.setUserId("USER12345");
+    AppTroveSDK.setUserEmail("user@example.com");
+    AppTroveSDK.setUserName("Jane Doe");
+    AppTroveSDK.setUserPhone("+1234567890");
+    AppTroveSDK.setIMEI("123456789012345", "987654321098765");
+    AppTroveSDK.setMacAddress("00:1A:2B:3C:4D:5E");
 
     // Additional user details
     const jsonData = {"phone": "+91-8137872378", "name": "Embassies"};
-    TrackierSDK.setUserAdditionalDetails("data", jsonData);
+    AppTroveSDK.setUserAdditionalDetails("data", jsonData);
 
     // Send event
-    TrackierSDK.trackEvent(event);
+    AppTroveSDK.trackEvent(event);
     
     Alert.alert('Complete Registration', 'Comprehensive COMPLETE_REGISTRATION event tracked with all parameters and user data!');
   };

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "960499328971",
+    "project_id": "cordmarket-906cd",
+    "storage_bucket": "cordmarket-906cd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960499328971:android:8d5d438f552c7d6c06784e",
+        "android_client_info": {
+          "package_name": "com.anonymous.exposdksimulator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDezD2IO6294EmH9ris8YWtQxXv8UsL_zU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

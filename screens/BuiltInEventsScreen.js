@@ -11,7 +11,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TrackierConfig, TrackierSDK, TrackierEvent } from 'trackier-expo-sdk';
+import { AppTroveConfig, AppTroveSDK, AppTroveEvent } from 'apptrove-expo-sdk';
 
 const BuiltInEventsScreen = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -85,56 +85,56 @@ const BuiltInEventsScreen = () => {
       return;
     }
 
-    let trackierEvent;
+    let appTroveEvent;
 
     switch (selectedEvent) {
       case "ADD_TO_CART":
-        trackierEvent = new TrackierEvent(TrackierEvent.ADD_TO_CART);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.ADD_TO_CART);
         break;
       case "LEVEL_ACHIEVED":
-        trackierEvent = new TrackierEvent(TrackierEvent.LEVEL_ACHIEVED);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.LEVEL_ACHIEVED);
         break;
       case "ADD_TO_WISHLIST":
-        trackierEvent = new TrackierEvent(TrackierEvent.ADD_TO_WISHLIST);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.ADD_TO_WISHLIST);
         break;
       case "COMPLETE_REGISTRATION":
-        trackierEvent = new TrackierEvent(TrackierEvent.COMPLETE_REGISTRATION);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.COMPLETE_REGISTRATION);
         break;
       case "TUTORIAL_COMPLETION":
-        trackierEvent = new TrackierEvent(TrackierEvent.TUTORIAL_COMPLETION);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.TUTORIAL_COMPLETION);
         break;
       case "PURCHASE":
-        trackierEvent = new TrackierEvent(TrackierEvent.PURCHASE);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.PURCHASE);
         break;
       case "SUBSCRIBE":
-        trackierEvent = new TrackierEvent(TrackierEvent.SUBSCRIBE);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.SUBSCRIBE);
         break;
       case "START_TRIAL":
-        trackierEvent = new TrackierEvent(TrackierEvent.START_TRIAL);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.START_TRIAL);
         break;
       case "ACHIEVEMENT_UNLOCKED":
-        trackierEvent = new TrackierEvent(TrackierEvent.ACHIEVEMENT_UNLOCKED);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.ACHIEVEMENT_UNLOCKED);
         break;
       case "CONTENT_VIEW":
-        trackierEvent = new TrackierEvent(TrackierEvent.CONTENT_VIEW);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.CONTENT_VIEW);
         break;
       case "TRAVEL_BOOKING":
-        trackierEvent = new TrackierEvent(TrackierEvent.TRAVEL_BOOKING);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.TRAVEL_BOOKING);
         break;
       case "SHARE":
-        trackierEvent = new TrackierEvent(TrackierEvent.SHARE);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.SHARE);
         break;
       case "INVITE":
-        trackierEvent = new TrackierEvent(TrackierEvent.INVITE);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.INVITE);
         break;
       case "LOGIN":
-        trackierEvent = new TrackierEvent(TrackierEvent.LOGIN);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.LOGIN);
         break;
       case "UPDATE":
-        trackierEvent = new TrackierEvent(TrackierEvent.UPDATE);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.UPDATE);
         break;
       default:
-        trackierEvent = new TrackierEvent(TrackierEvent.LOGIN);
+        appTroveEvent = new AppTroveEvent(AppTroveEvent.LOGIN);
         break;
     }
 
@@ -144,28 +144,28 @@ const BuiltInEventsScreen = () => {
       return;
     }
 
-    trackierEvent.revenue = revenueValue;
-    trackierEvent.currency = selectedCurrency;
+    appTroveEvent.revenue = revenueValue;
+    appTroveEvent.currency = selectedCurrency;
 
     // Add custom parameters
     params.forEach((paramKey, index) => {
       if (paramValues[paramKey]) {
-        trackierEvent[`param${index + 1}`] = paramValues[paramKey];
+        appTroveEvent[`param${index + 1}`] = paramValues[paramKey];
       }
     });
 
     // Set user data (if SDK is available)
-    if (TrackierSDK && TrackierSDK.setUserName) {
-      TrackierSDK.setUserName('Test User');
-      TrackierSDK.setUserPhone('+1234567890');
-      TrackierSDK.setUserId('user123');
+    if (AppTroveSDK && AppTroveSDK.setUserName) {
+      AppTroveSDK.setUserName('Test User');
+      AppTroveSDK.setUserPhone('+1234567890');
+      AppTroveSDK.setUserId('user123');
     }
 
     // Track the event (if SDK is available)
-    if (TrackierSDK && TrackierSDK.trackEvent) {
-      TrackierSDK.trackEvent(trackierEvent);
+    if (AppTroveSDK && AppTroveSDK.trackEvent) {
+      AppTroveSDK.trackEvent(appTroveEvent);
     } else {
-      console.log("Trackier SDK not available - simulating event tracking");
+      console.log("AppTrove SDK not available - simulating event tracking");
     }
 
     showSnackbar('Built-in Event Submitted Successfully');

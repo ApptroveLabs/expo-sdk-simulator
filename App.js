@@ -5,8 +5,8 @@ import { StatusBar } from 'expo-status-bar';
 import { Platform } from 'react-native';
 import * as Linking from 'expo-linking';
 
-// Import Trackier SDK
-import { TrackierConfig, TrackierSDK, TrackierEvent } from 'trackier-expo-sdk';
+// Import AppTrove SDK
+import { AppTroveConfig, AppTroveSDK, AppTroveEvent } from 'apptrove-expo-sdk';
 
 // Firebase Analytics will be imported dynamically to avoid build errors
 
@@ -21,6 +21,7 @@ import AddToCartScreen from './screens/AddToCartScreen';
 import CakeScreen from './screens/CakeScreen';
 import CampaignDataScreen from './screens/CampaignDataScreen';
 import CompleteEventScreen from './screens/CompleteEventScreen';
+import * as Notifications from 'expo-notifications';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,66 +32,70 @@ export default function App() {
   const navigationRef = useRef(null);
 
   useEffect(() => {
-    initializeTrackierSDK();
+    initializeAppTroveSDK();
   }, []);
 
-  const initializeTrackierSDK = async () => {
+  const initializeAppTroveSDK = async () => {
     try {
-      // Check if TrackierSDK is available
-      if (!TrackierSDK || !TrackierConfig) {
-        console.warn("Trackier SDK not available - running in demo mode");
+      // Check if AppTroveSDK is available
+      if (!AppTroveSDK || !AppTroveConfig) {
+        console.warn("AppTrove SDK not available - running in demo mode");
         setInitializing(false);
         return;
       }
 
-      // Initialize Trackier SDK
-      const trackierConfig = new TrackierConfig(
-        "Add your Sdk keys from Trackier Dashboard", // Replace with your actual app token
-        TrackierConfig.EnvironmentDevelopment
+      // Initialize AppTrove SDK
+      const sdkConfig = new AppTroveConfig(
+        "SDk Key", // Replace with your actual app token
+        AppTroveConfig.EnvironmentDevelopment
       );
       
       // Set app secret for SDK signing (optional)
-      if (trackierConfig.setAppSecret) {
-        trackierConfig.setAppSecret(
-          "Add Secret Id", // Replace with your actual secret ID
-          "Add Secret Key" // Replace with your actual secret key
-        );
-      }
+      // if (sdkConfig.setAppSecret) {
+      //   sdkConfig.setAppSecret(
+      //     "Add Secret Id", // Replace with your actual secret ID
+      //     "Add Secret Key" // Replace with your actual secret key
+      //   );
+      // }
 
       // Set App ID
-      trackierConfig.setAppId("MYcJ6a79MQ"); // Replace with your actual App ID
+      // sdkConfig.setAppId("MYcJ6a79MQ"); // Replace with your actual App ID
 
       // Set encryption key for secure data transmission 
-      trackierConfig.setEncryptionKey("Your Encruption Keys"); // Replace with your encryption key
+      // sdkConfig.setEncryptionKey("Your Encruption Keys"); // Replace with your encryption key
 
       // Set encryption type 
-      trackierConfig.setEncryptionType(TrackierConfig.EncryptionType.AES_GCM); // Use AES_GCM encryption
+      // sdkConfig.setEncryptionType(AppTroveConfig.EncryptionType.AES_GCM); // Use AES_GCM encryption
 
       // Set Facebook App ID for Meta attribution (Android)
-      trackierConfig.setFacebookAppId("123456789012345"); // Replace with your actual Facebook App ID
+      sdkConfig.setFacebookAppId("123456789012345"); // Replace with your actual Facebook App ID
 
       // Set custom Android ID for device identification (Android)
-      trackierConfig.setAndroidId("custom_android_device_id_123"); // Replace with your custom Android ID
+      sdkConfig.setAndroidId("custom_android_device_id_123"); // Replace with your custom Android ID
 
       // Set deferred deeplink callback
-      if (trackierConfig.setDeferredDeeplinkCallbackListener) {
-        trackierConfig.setDeferredDeeplinkCallbackListener((uri) => {
+      if (sdkConfig.setDeferredDeeplinkCallbackListener) {
+        sdkConfig.setDeferredDeeplinkCallbackListener((uri) => {
           console.log("Deferred Deeplink Callback received");
-          console.log("URL: " + uri);
-          setDeferredDeeplinkUri(uri);
+          console.log("URL/Attribution object:", uri);
+          const uriStr = typeof uri === 'object' && uri !== null ? (uri.url || JSON.stringify(uri)) : uri;
+          setDeferredDeeplinkUri(uriStr);
           handleDeferredDeepLink(uri);
         });
       }
 
       // Initialize the SDK
-      if (TrackierSDK.initialize) {
-        TrackierSDK.initialize(trackierConfig);
+      if (AppTroveSDK.initialize) {
+        AppTroveSDK.initialize(sdkConfig);
       }
       
+      // Request permissions and register native push tokens with AppTrove automatically
+      await registerPushNotificationsWithAppTrove();
+      
       // Send initial deep link to SDK after initialization
-      if (initialDeepLink && TrackierSDK.parseDeepLink) {
+      if (initialDeepLink && AppTroveSDK.parseDeepLink) {
         console.log("Sending initial deep link to SDK:", initialDeepLink);
-        TrackierSDK.parseDeepLink(initialDeepLink);
+        AppTroveSDK.parseDeepLink(initialDeepLink);
       }
       
       // Setup Apple Ads Token for iOS (if available)
@@ -103,9 +108,9 @@ export default function App() {
         await setupUninstallTracking();
       }
       
-      console.log("Trackier SDK initialized successfully");
+      console.log("AppTrove SDK initialized successfully");
     } catch (error) {
-      console.error("Error initializing Trackier SDK:", error);
+      console.error("Error initializing AppTrove SDK:", error);
       console.log("Running in demo mode - SDK features will be simulated");
     } finally {
       setInitializing(false);
@@ -137,14 +142,14 @@ export default function App() {
           const advertisingId = await getAdvertisingId();
           console.log("IDFA obtained:", advertisingId ? "IDFA received" : "No IDFA");
           
-          // Send IDFA to Trackier SDK
-          if (advertisingId && TrackierSDK && TrackierSDK.updateAppleAdsToken) {
-            TrackierSDK.updateAppleAdsToken(advertisingId);
-            console.log("IDFA sent to Trackier SDK successfully");
+          // Send IDFA to AppTrove SDK
+          if (advertisingId && AppTroveSDK && AppTroveSDK.updateAppleAdsToken) {
+            AppTroveSDK.updateAppleAdsToken(advertisingId);
+            console.log("IDFA sent to AppTrove SDK successfully");
           } else if (!advertisingId) {
             console.log("No IDFA available (user may have limited ad tracking)");
           } else {
-            console.log("Trackier SDK not available for IDFA update");
+            console.log("AppTrove SDK not available for IDFA update");
           }
         } else if (permissionStatus === 'denied') {
           console.log("Tracking permission denied by user");
@@ -167,9 +172,9 @@ export default function App() {
           const simulatedIDFA = "00000000-0000-0000-0000-000000000000";
           console.log("Simulated IDFA for testing:", simulatedIDFA);
           
-          if (TrackierSDK && TrackierSDK.updateAppleAdsToken) {
-            TrackierSDK.updateAppleAdsToken(simulatedIDFA);
-            console.log("Simulated IDFA sent to Trackier SDK for testing");
+          if (AppTroveSDK && AppTroveSDK.updateAppleAdsToken) {
+            AppTroveSDK.updateAppleAdsToken(simulatedIDFA);
+            console.log("Simulated IDFA sent to AppTrove SDK for testing");
           }
           
         } catch (nativeError) {
@@ -184,13 +189,75 @@ export default function App() {
     }
   };
 
+  const registerPushNotificationsWithAppTrove = async () => {
+    try {
+      console.log("=== PUSH TOKEN REGISTRATION START ===");
+      console.log("[Push Token] Platform:", Platform.OS);
+      
+      // Step 1: Check/request permissions
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      console.log("[Push Token] Current permission status:", existingStatus);
+      let finalStatus = existingStatus;
+      
+      if (existingStatus !== 'granted') {
+        console.log("[Push Token] Requesting push notification permissions...");
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+        console.log("[Push Token] Permission response:", finalStatus);
+      }
+      
+      if (finalStatus !== 'granted') {
+        console.warn("[Push Token] DENIED - User did not grant push notification permissions.");
+        console.log("=== PUSH TOKEN REGISTRATION END (no permission) ===");
+        return;
+      }
+      console.log("[Push Token] Permission GRANTED ✓");
+
+      // Step 2: Get REAL native device push token from Firebase
+      console.log("[Push Token] Requesting REAL device push token from Firebase...");
+      const deviceToken = await Notifications.getDevicePushTokenAsync();
+      const token = deviceToken.data;
+      const tokenType = deviceToken.type; // 'android' or 'ios'
+      
+      console.log("[Push Token] ✅ SUCCESS - Real native token obtained!");
+      console.log("[Push Token] Token Type:", tokenType.toUpperCase());
+      console.log("[Push Token] Token Value:", token);
+      console.log("[Push Token] Token Length:", typeof token === 'string' ? token.length : 'N/A');
+
+      // Step 3: Send to AppTrove SDK based on platform
+      if (tokenType === 'android') {
+        console.log("[Push Token] Sending REAL FCM token to AppTroveSDK.sendFcmToken()...");
+        if (AppTroveSDK && AppTroveSDK.sendFcmToken) {
+          AppTroveSDK.sendFcmToken(token);
+          console.log("[Push Token] ✅ REAL FCM token sent to AppTrove SDK successfully!");
+        } else {
+          console.warn("[Push Token] ⚠️ AppTroveSDK.sendFcmToken is not available");
+        }
+      } else if (tokenType === 'ios') {
+        console.log("[Push Token] Sending REAL APNs token to AppTroveSDK.sendAPNToken()...");
+        if (AppTroveSDK && AppTroveSDK.sendAPNToken) {
+          AppTroveSDK.sendAPNToken(token);
+          console.log("[Push Token] ✅ REAL APNs token sent to AppTrove SDK successfully!");
+        } else {
+          console.warn("[Push Token] ⚠️ AppTroveSDK.sendAPNToken is not available");
+        }
+      }
+      
+      console.log("=== PUSH TOKEN REGISTRATION END (success) ===");
+    } catch (error) {
+      console.error("[Push Token] ❌ FAILED to get real device token:", error.message || error);
+      console.log("[Push Token] Make sure google-services.json (Android) or GoogleService-Info.plist (iOS) is configured correctly.");
+      console.log("=== PUSH TOKEN REGISTRATION END (error) ===");
+    }
+  };
+
   const setupUninstallTracking = async () => {
     try {
-      const trackierId = await TrackierSDK.getTrackierId();
-      console.log("Trackier ID for uninstall tracking:", trackierId);
+      const appTroveId = await AppTroveSDK.getAppTroveId();
+      console.log("AppTrove ID for uninstall tracking:", appTroveId);
       console.log("Uninstall tracking setup completed (manual tracking)");
       console.log("Note: For production, integrate with your preferred analytics platform");
-      //await analytics().setUserProperty('ct_objectId', trackierId);
+      //await analytics().setUserProperty('ct_objectId', appTroveId);
     } catch (error) {
       console.log("Error setting up uninstall tracking:", error);
     }
@@ -268,40 +335,54 @@ export default function App() {
   };
 
   const handleDeferredDeepLink = (uri) => {
-    console.log("Deferred Deeplink Callback received");
-    console.log("URL: " + uri);
+    console.log("Deferred Deeplink Callback received in handler");
+    console.log("URL/Attribution object:", uri);
     
     // Handle deferred deep links (when app is installed via deep link)
     try {
-      // Check if it's a valid URL
-      let urlObj;
-      let params;
-      
-      if (uri.startsWith('http://') || uri.startsWith('https://') || uri.startsWith('exp://') || uri.startsWith('exp+')) {
-        try {
-          urlObj = new URL(uri);
-          params = new URLSearchParams(urlObj.search);
-        } catch (urlError) {
-          console.log("Failed to parse as URL, treating as query string:", urlError.message);
-          // If URL parsing fails, treat as query string
-          params = new URLSearchParams(uri);
+      let dlv, productId, quantity, pid, costValue, costCurrency, camp, p1, p2;
+      const uriStr = typeof uri === 'object' && uri !== null ? (uri.url || JSON.stringify(uri)) : uri;
+
+      if (typeof uri === 'object' && uri !== null) {
+        // Retrieve values directly from attribution object
+        dlv = uri.deepLinkValue;
+        productId = uri.productId || uri.product_id;
+        quantity = uri.quantity;
+        pid = uri.pid || uri.partnerId;
+        costValue = uri.costValue;
+        costCurrency = uri.costCurrency;
+        camp = uri.camp || uri.campaign;
+        p1 = uri.p1;
+        p2 = uri.p2;
+      } else if (uriStr) {
+        // Check if it's a valid URL and parse query params
+        let urlObj;
+        let params;
+        
+        if (uriStr.startsWith('http://') || uriStr.startsWith('https://') || uriStr.startsWith('exp://') || uriStr.startsWith('exp+')) {
+          try {
+            urlObj = new URL(uriStr);
+            params = new URLSearchParams(urlObj.search);
+          } catch (urlError) {
+            console.log("Failed to parse as URL, treating as query string:", urlError.message);
+            params = new URLSearchParams(uriStr);
+          }
+        } else {
+          params = new URLSearchParams(uriStr);
         }
-      } else {
-        // Handle query string only (like "utm_source=google-play&utm_medium=organic")
-        params = new URLSearchParams(uri);
+        
+        dlv = params.get('dlv');
+        productId = params.get('productid') || params.get('product_id');
+        quantity = params.get('quantity');
+        pid = params.get('pid');
+        costValue = params.get('cost_value');
+        costCurrency = params.get('cost_currency');
+        camp = params.get('camp');
+        p1 = params.get('p1');
+        p2 = params.get('p2');
       }
       
-      const dlv = params.get('dlv');
-      const productId = params.get('productid') || params.get('product_id');
-      const quantity = params.get('quantity');
-      const pid = params.get('pid');
-      const costValue = params.get('cost_value');
-      const costCurrency = params.get('cost_currency');
-      const camp = params.get('camp');
-      const p1 = params.get('p1');
-      const p2 = params.get('p2');
-      
-      console.log('Deferred deep link parameters:', { 
+      console.log('Deferred deep link parameters mapped:', { 
         dlv, productId, quantity, pid, costValue, costCurrency, camp, p1, p2 
       });
       
@@ -322,18 +403,19 @@ export default function App() {
         navigationRef.current?.navigate('ProductPageScreen', { 
           productId, 
           quantity,
-          deepLinkUrl: uri,
+          deepLinkUrl: uriStr,
         });
       } else {
         navigationRef.current?.navigate('DeepLinking', {
-          deepLinkUrl: uri,
+          deepLinkUrl: uriStr,
         });
       }
     } catch (error) {
       console.error("Error handling deferred deep link:", error);
+      const uriStr = typeof uri === 'object' && uri !== null ? (uri.url || JSON.stringify(uri)) : uri;
       // Still navigate to DeepLinking screen even if parsing fails
       navigationRef.current?.navigate('DeepLinking', {
-        deepLinkUrl: uri,
+        deepLinkUrl: uriStr,
       });
     }
   };
@@ -356,8 +438,8 @@ export default function App() {
     const subscription = Linking.addEventListener('url', ({ url }) => {
       handleDeepLink(url);
       // Send to SDK for tracking (if SDK is initialized)
-      if (TrackierSDK && TrackierSDK.parseDeepLink) {
-        TrackierSDK.parseDeepLink(url);
+      if (AppTroveSDK && AppTroveSDK.parseDeepLink) {
+        AppTroveSDK.parseDeepLink(url);
       }
     });
 
@@ -388,7 +470,7 @@ export default function App() {
         <Stack.Screen 
           name="Home" 
           component={HomeScreen}
-          options={{ title: 'Trackier Expo SDK Simulator' }}
+          options={{ title: 'AppTrove Expo SDK Simulator' }}
         />
         <Stack.Screen 
           name="BuiltInEvents" 

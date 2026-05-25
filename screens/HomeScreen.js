@@ -36,6 +36,7 @@ const HomeScreen = ({ navigation }) => {
       screen: 'DynamicLink',
       description: 'Test dynamic link creation and resolution.',
     },
+
     {
       title: 'Product Page',
       icon: 'cube-outline',
@@ -79,10 +80,10 @@ const HomeScreen = ({ navigation }) => {
             resizeMode="contain"
           />
           <Text style={styles.welcomeText}>
-            Welcome to Trackier Expo SDK Simulator
+            Welcome to AppTrove Expo SDK Simulator
           </Text>
           <Text style={styles.subtitleText}>
-            Test and explore all Trackier SDK features
+            Test and explore all AppTrove SDK features
           </Text>
         </View>
 
@@ -113,7 +114,7 @@ const HomeScreen = ({ navigation }) => {
         {/* Footer */}
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            Trackier Expo SDK Simulator v1.0.0
+            AppTrove Expo SDK Simulator v2.0.2
           </Text>
         </View>
       </ScrollView>

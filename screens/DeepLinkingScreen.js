@@ -53,7 +53,7 @@ const DeepLinkingScreen = ({ route }) => {
   };
 
   const testDeepLink = () => {
-    const testUrl = 'https://trackier.u9ilnk.me/product?dlv=DeepLinkingScreen&quantity=5&pid=test123';
+    const testUrl = 'https://apptrove.u9ilnk.me/product?dlv=DeepLinkingScreen&quantity=5&pid=test123';
     handleDeepLink(testUrl);
   };
 
@@ -133,7 +133,7 @@ const DeepLinkingScreen = ({ route }) => {
           <Text style={styles.instructionsTitle}>How to Test:</Text>
           <Text style={styles.instructionsText}>
             1. Use the "Test Deep Link" button to simulate a deep link{'\n'}
-            2. Or use a URL like: https://trackier.u9ilnk.me/product?dlv=DeepLinkingScreen&quantity=5&pid=test123{'\n'}
+            2. Or use a URL like: https://apptrove.u9ilnk.me/product?dlv=DeepLinkingScreen&quantity=5&pid=test123{'\n'}
             3. The app will parse the URL and display the extracted data{'\n'}
             4. Check the console logs for detailed information
           </Text>

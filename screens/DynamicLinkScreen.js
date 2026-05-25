@@ -12,7 +12,7 @@ import {
   Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TrackierSDK } from 'trackier-expo-sdk';
+import { AppTroveSDK } from 'apptrove-expo-sdk';
 
 const DynamicLinkScreen = () => {
   const [deepLinkUrl, setDeepLinkUrl] = useState('');
@@ -42,9 +42,9 @@ const DynamicLinkScreen = () => {
 
     setIsResolving(true);
     try {
-      // Use Trackier SDK to resolve deep link URL (if available)
-      if (TrackierSDK && TrackierSDK.resolveDeeplinkUrl) {
-        const result = await TrackierSDK.resolveDeeplinkUrl(deepLinkUrl);
+      // Use AppTrove SDK to resolve deep link URL (if available)
+      if (AppTroveSDK && AppTroveSDK.resolveDeeplinkUrl) {
+        const result = await AppTroveSDK.resolveDeeplinkUrl(deepLinkUrl);
         
         if (result && result.url) {
           setResolvedUrl(`Resolved URL: ${result.url}\nSDK Parameters: ${JSON.stringify(result.sdkParams, null, 2)}`);
@@ -117,8 +117,8 @@ const DynamicLinkScreen = () => {
         }
       };
 
-      if (TrackierSDK && TrackierSDK.createDynamicLink) {
-        const dynamicLinkUrl = await TrackierSDK.createDynamicLink(config);
+      if (AppTroveSDK && AppTroveSDK.createDynamicLink) {
+        const dynamicLinkUrl = await AppTroveSDK.createDynamicLink(config);
         setResolvedUrl(dynamicLinkUrl);
         Alert.alert('Dynamic Link Created', dynamicLinkUrl);
       } else {

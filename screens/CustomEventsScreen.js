@@ -11,7 +11,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TrackierConfig, TrackierSDK, TrackierEvent } from 'trackier-expo-sdk';
+import { AppTroveConfig, AppTroveSDK, AppTroveEvent } from 'apptrove-expo-sdk';
 
 const CustomEventsScreen = () => {
   const [eventId, setEventId] = useState('');
@@ -73,22 +73,22 @@ const CustomEventsScreen = () => {
     }
 
     // Create custom event with the provided event ID
-    const trackierEvent = new TrackierEvent(eventId);
-    trackierEvent.revenue = revenueValue;
-    trackierEvent.currency = selectedCurrency;
-    trackierEvent.orderId = 'CustomOrder123';
+    const appTroveEvent = new AppTroveEvent(eventId);
+    appTroveEvent.revenue = revenueValue;
+    appTroveEvent.currency = selectedCurrency;
+    appTroveEvent.orderId = 'CustomOrder123';
 
     // Add custom parameters
     params.forEach((paramKey, index) => {
       if (paramValues[paramKey]) {
-        trackierEvent[`param${index + 1}`] = paramValues[paramKey];
+        appTroveEvent[`param${index + 1}`] = paramValues[paramKey];
       }
     });
 
     // Set user data
-    TrackierSDK.setUserName('Custom Event User');
-    TrackierSDK.setUserPhone('+1234567890');
-    TrackierSDK.setUserId('customUser123');
+    AppTroveSDK.setUserName('Custom Event User');
+    AppTroveSDK.setUserPhone('+1234567890');
+    AppTroveSDK.setUserId('customUser123');
 
     // Set additional user details
     const customData = {
@@ -96,10 +96,10 @@ const CustomEventsScreen = () => {
       "phone": "+1234567890",
       "email": "custom@example.com"
     };
-    TrackierSDK.setUserAdditionalDetails("customData", customData);
+    AppTroveSDK.setUserAdditionalDetails("customData", customData);
 
     // Track the event
-    TrackierSDK.trackEvent(trackierEvent);
+    AppTroveSDK.trackEvent(appTroveEvent);
 
     showSnackbar('Custom Event Submitted Successfully');
   };

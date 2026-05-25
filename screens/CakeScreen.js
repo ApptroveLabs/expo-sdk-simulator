@@ -10,7 +10,7 @@ import {
   Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TrackierSDK, TrackierEvent } from 'trackier-expo-sdk';
+import { AppTroveSDK, AppTroveEvent } from 'apptrove-expo-sdk';
 
 const CakeScreen = ({ route, navigation }) => {
   const [selectedCake, setSelectedCake] = useState(null);
@@ -59,16 +59,16 @@ const CakeScreen = ({ route, navigation }) => {
         }
         
         // Track deep link arrival
-        const trackierEvent = new TrackierEvent(TrackierEvent.CONTENT_VIEW);
-        trackierEvent.revenue = cake.price;
-        trackierEvent.currency = cake.currency;
-        trackierEvent.param1 = cake.id;
-        trackierEvent.param2 = cake.name;
-        trackierEvent.param3 = 'deep_link';
-        trackierEvent.param4 = actionData || '';
-        trackierEvent.param5 = dlv || '';
+        const appTroveEvent = new AppTroveEvent(AppTroveEvent.CONTENT_VIEW);
+        appTroveEvent.revenue = cake.price;
+        appTroveEvent.currency = cake.currency;
+        appTroveEvent.param1 = cake.id;
+        appTroveEvent.param2 = cake.name;
+        appTroveEvent.param3 = 'deep_link';
+        appTroveEvent.param4 = actionData || '';
+        appTroveEvent.param5 = dlv || '';
         
-        TrackierSDK.trackEvent(trackierEvent);
+        AppTroveSDK.trackEvent(appTroveEvent);
       }
     }
   }, [productId, routeQuantity, actionData, dlv]);
@@ -77,14 +77,14 @@ const CakeScreen = ({ route, navigation }) => {
     setSelectedCake(cake);
     
     // Track product view
-    const trackierEvent = new TrackierEvent(TrackierEvent.CONTENT_VIEW);
-    trackierEvent.revenue = cake.price;
-    trackierEvent.currency = cake.currency;
-    trackierEvent.param1 = cake.id;
-    trackierEvent.param2 = cake.name;
-    trackierEvent.param3 = 'manual_selection';
+    const appTroveEvent = new AppTroveEvent(AppTroveEvent.CONTENT_VIEW);
+    appTroveEvent.revenue = cake.price;
+    appTroveEvent.currency = cake.currency;
+    appTroveEvent.param1 = cake.id;
+    appTroveEvent.param2 = cake.name;
+    appTroveEvent.param3 = 'manual_selection';
     
-    TrackierSDK.trackEvent(trackierEvent);
+    AppTroveSDK.trackEvent(appTroveEvent);
   };
 
   const handleAddToCart = () => {
@@ -94,15 +94,15 @@ const CakeScreen = ({ route, navigation }) => {
     }
 
     // Track add to cart event
-    const trackierEvent = new TrackierEvent(TrackierEvent.ADD_TO_CART);
-    trackierEvent.revenue = selectedCake.price * quantity;
-    trackierEvent.currency = selectedCake.currency;
-    trackierEvent.param1 = selectedCake.id;
-    trackierEvent.param2 = selectedCake.name;
-    trackierEvent.param3 = quantity.toString();
-    trackierEvent.param4 = selectedCake.category;
+    const appTroveEvent = new AppTroveEvent(AppTroveEvent.ADD_TO_CART);
+    appTroveEvent.revenue = selectedCake.price * quantity;
+    appTroveEvent.currency = selectedCake.currency;
+    appTroveEvent.param1 = selectedCake.id;
+    appTroveEvent.param2 = selectedCake.name;
+    appTroveEvent.param3 = quantity.toString();
+    appTroveEvent.param4 = selectedCake.category;
     
-    TrackierSDK.trackEvent(trackierEvent);
+    AppTroveSDK.trackEvent(appTroveEvent);
     
     Alert.alert('Added to Cart', `${selectedCake.name} (Qty: ${quantity}) added to cart!`);
   };
@@ -114,15 +114,15 @@ const CakeScreen = ({ route, navigation }) => {
     }
 
     // Track purchase event
-    const trackierEvent = new TrackierEvent(TrackierEvent.PURCHASE);
-    trackierEvent.revenue = selectedCake.price * quantity;
-    trackierEvent.currency = selectedCake.currency;
-    trackierEvent.param1 = selectedCake.id;
-    trackierEvent.param2 = selectedCake.name;
-    trackierEvent.param3 = quantity.toString();
-    trackierEvent.param4 = selectedCake.category;
+    const appTroveEvent = new AppTroveEvent(AppTroveEvent.PURCHASE);
+    appTroveEvent.revenue = selectedCake.price * quantity;
+    appTroveEvent.currency = selectedCake.currency;
+    appTroveEvent.param1 = selectedCake.id;
+    appTroveEvent.param2 = selectedCake.name;
+    appTroveEvent.param3 = quantity.toString();
+    appTroveEvent.param4 = selectedCake.category;
     
-    TrackierSDK.trackEvent(trackierEvent);
+    AppTroveSDK.trackEvent(appTroveEvent);
     
     Alert.alert('Purchase Complete', `Thank you for purchasing ${selectedCake.name}!`);
   };
